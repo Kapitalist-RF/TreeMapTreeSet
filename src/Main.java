@@ -18,7 +18,15 @@ public class Main {
         arrayList.add(person06);
         Collections.sort(arrayList, new PersonComparator(2));
         System.out.println(arrayList);
-
+        
+        TreeSet<Person> set = new TreeSet<>(new PersonComparator(2));
+        set.add(person01);
+        set.add(person02);
+        set.add(person03);
+        set.add(person04);
+        set.add(person05);
+        set.add(person06);
+        System.out.println(set);
     }
 
 }
