@@ -18,7 +18,7 @@ public class PersonComparator implements Comparator<Person> {
             } else if (o1.getAge() > o2.getAge()) {
                 return 1;
             } else {
-                return 0;
+                return -1;
             }
         } else if (o1.getSurname().length() < o2.getSurname().length()) {
             return -1;
@@ -30,7 +30,7 @@ public class PersonComparator implements Comparator<Person> {
             } else if (o1.getAge() > o2.getAge()) {
                 return 1;
             } else {
-                return 0;
+                return -1;
             }
         }
     }
