@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.function.Supplier;
 
 public class Main {
 
@@ -16,10 +17,15 @@ public class Main {
         arrayList.add(person04);
         arrayList.add(person05);
         arrayList.add(person06);
-        Collections.sort(arrayList, new PersonComparator(2));
+
+        Comparator<Person> lambdaComparatorPerson = (o1, o2) -> {
+            return comparatorPerson(o1, o2);
+        };
+
+        Collections.sort(arrayList, lambdaComparatorPerson);
         System.out.println(arrayList);
-        
-        TreeSet<Person> set = new TreeSet<>(new PersonComparator(2));
+
+        TreeSet<Person> set = new TreeSet<>(lambdaComparatorPerson);
         set.add(person01);
         set.add(person02);
         set.add(person03);
@@ -27,6 +33,33 @@ public class Main {
         set.add(person05);
         set.add(person06);
         System.out.println(set);
+    }
+
+    public static int comparatorPerson(Person o1, Person o2) {
+        int countWords = 2;
+        int count = o1.getSurname().split("\\P{IsAlphabetic}+").length +
+                o2.getSurname().split("\\P{IsAlphabetic}+").length;
+        if (count > countWords) {
+            if (o1.getAge() < o2.getAge()) {
+                return -1;
+            } else if (o1.getAge() > o2.getAge()) {
+                return 1;
+            } else {
+                return 1;
+            }
+        } else if (o1.getSurname().length() < o2.getSurname().length()) {
+            return -1;
+        } else if (o1.getSurname().length() > o2.getSurname().length()) {
+            return 1;
+        } else {
+            if (o1.getAge() < o2.getAge()) {
+                return -1;
+            } else if (o1.getAge() > o2.getAge()) {
+                return 1;
+            } else {
+                return 1;
+            }
+        }
     }
 
 }
